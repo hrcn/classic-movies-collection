@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/user_actions';
+import { Link } from 'react-router-dom';
 
 class RegisterLogin extends Component {
   state = {
@@ -54,6 +55,7 @@ class RegisterLogin extends Component {
         <h2>Login</h2>
         <div className="row">
           <form className="col s12" onSubmit={event => this.submitForm(event)}>
+            {/* Enter email */}
             <div className="row">
               <div className="input-field col s12">
                 <input
@@ -64,7 +66,7 @@ class RegisterLogin extends Component {
                   id="email"
                   type="email"
                 />
-                <label htmlFor="email">Email</label>
+                <label className="active" htmlFor="email">Email</label>
                 <span
                   className="helper-text"
                   data-error="Enter the correct email"
@@ -72,7 +74,7 @@ class RegisterLogin extends Component {
                 />
               </div>
             </div>
-
+            {/* Enter password */}
             <div className="row">
               <div className="input-field col s12">
                 <input
@@ -83,7 +85,7 @@ class RegisterLogin extends Component {
                   id="password"
                   type="password"
                 />
-                <label htmlFor="email">Password</label>
+                <label className="active" htmlFor="email">Password</label>
                 <span
                   className="helper-text"
                   data-error="Wrong password"
@@ -91,15 +93,15 @@ class RegisterLogin extends Component {
                 />
               </div>
             </div>
-
+            {/* Handle errors */}
             {this.state.errors.length > 0 && (
               <div>
                 {this.displayErrors(this.state.errors)}
               </div>
             )}
-
+            {/* Login button and signup button */}
             <div className="row">
-              <div className="col 12">
+              <div className="col s6">
                 <button 
                   className="btn waves-effect red lighten-2"
                   type="submit"
@@ -108,6 +110,17 @@ class RegisterLogin extends Component {
                 >
                   Login
                 </button>
+              </div>
+              <div className="col s6">
+                <Link to="/register">
+                  <button 
+                    className="btn waves-effect red lighten-2"
+                    type="submit"
+                    name="action"
+                  >
+                    Sign Up
+                  </button>
+                </Link>
               </div>
             </div>
           </form>
