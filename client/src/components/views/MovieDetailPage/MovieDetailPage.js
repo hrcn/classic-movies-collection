@@ -6,15 +6,16 @@ import {
 } from '../../Config';
 import GridCard from '../../commons/GridCards';
 import MainImage from '../LandingPage/MainImage';
+import Favorite from './Favorite';
 
 function MovieDetailPage(props) {
   const [Movie, setMovie] = useState([]);
   const [Crews, setCrews] = useState([]);
   const [ActorToggle, setActorToggle] = useState(false);
 
-  useEffect(() => {
-    const { movieId } = props.match.params;
+  const { movieId } = props.match.params;
 
+  useEffect(() => {
     fetch(`${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`)
       .then((response) => response.json())
       .then((response) => {
@@ -42,7 +43,11 @@ function MovieDetailPage(props) {
       {/* Body */}
       <div style={{ width: '85%', margin: '1rem auto' }}>
         <div style={{ display: 'flex', justifyContent: 'flext-end' }}>
-          <button>Add to Favorite</button>
+          <Favorite 
+            userFrom={localStorage.getItem('userId')} 
+            movieId={movieId}
+            movieInfo={Movie}
+          />
         </div>
       </div>
 
