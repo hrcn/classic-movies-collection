@@ -59,7 +59,7 @@ function LandingPage() {
 
   return (
     <div style={{ width: '100%', margin: '0' }}>
-    {MainMovieImage
+      {MainMovieImage
       && (
       <MainImage
         image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}
@@ -67,30 +67,30 @@ function LandingPage() {
         text={MainMovieImage.overview}
       />
       )}
-    <div style={{ width: '85%', margin: '1rem auto' }}>
-      <Title level={2}> Movies by latest </Title>
-      <hr />
-      <Row gutter={[16, 16]}>
-        {Movies && Movies.map((movie, index) => (
-          <React.Fragment key={index}>
-            <GridCard
-              image={movie.poster_path
-                ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
-                : null}
-              movieId={movie.id}
-              movieName={movie.original_title}
-            />
-          </React.Fragment>
-        ))}
-      </Row>
-      {Loading
+      <div style={{ width: '85%', margin: '1rem auto' }}>
+        <Title level={2}> Movies by latest </Title>
+        <hr />
+        <Row gutter={[16, 16]}>
+          {Movies && Movies.map((movie, index) => (
+            <React.Fragment key={index}>
+              <GridCard
+                image={movie.poster_path
+                  ? `${IMAGE_BASE_URL}${POSTER_SIZE}${movie.poster_path}`
+                  : null}
+                movieId={movie.id}
+                movieName={movie.original_title}
+              />
+            </React.Fragment>
+          ))}
+        </Row>
+        {Loading
         && <div>Loading...</div>}
-      <br />
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <button ref={buttonRef} className="loadMore" onClick={loadMoreItems}>Load More</button>
+        <br />
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <button ref={buttonRef} className="loadMore" onClick={loadMoreItems}>Load More</button>
+        </div>
       </div>
     </div>
-  </div>
   );
 }
 
