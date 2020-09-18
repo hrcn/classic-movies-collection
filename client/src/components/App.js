@@ -1,15 +1,14 @@
 import React, { Suspense } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Auth from '../hoc/auth';
-// pages for this product
+// pages
 import LandingPage from './views/LandingPage/LandingPage.js';
 import LoginPage from './views/LoginPage/LoginPage.js';
 import RegisterPage from './views/RegisterPage/RegisterPage.js';
 import MovieDetailPage from './views/MovieDetailPage/MovieDetailPage';
 import FavoritePage from './views/FavoritePage/FavoritePage'
-
+// UI
 import NavBar from './views/NavBar/NavBar';
-import Footer from './views/Footer/Footer';
 
 function App() {
   return (
@@ -24,7 +23,6 @@ function App() {
           <Route exact path="/favorite" component={Auth(FavoritePage, null)} />
         </Switch>
       </div>
-      <Footer />
     </Suspense>
   );
 }

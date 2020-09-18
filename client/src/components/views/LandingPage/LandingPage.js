@@ -7,16 +7,15 @@ import MainImage from './MainImage';
 import GridCard from '../../commons/GridCards';
 
 const { Title } = Typography;
-
 function LandingPage() {
   const buttonRef = useRef(null);
+
   const [Movies, setMovies] = useState([]);
   const [MainMovieImage, setMainMovieImage] = useState(null);
   const [Loading, setLoading] = useState(true);
   const [CurrentPage, setCurrentPage] = useState(0);
 
   useEffect(() => {
-    // https://api.themoviedb.org/3/movie/popular?api_key=<<api_key>>&language=en-US&page=1
     const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
     fetchMovies(endpoint);
   }, []);
@@ -29,6 +28,9 @@ function LandingPage() {
     fetch(endpoint)
       .then((result) => result.json())
       .then((result) => {
+        // console.log(result)
+        // console.log('Movies',...Movies)
+        // console.log('result',...result.results)
         setMovies([...Movies, ...result.results]);
         setMainMovieImage(MainMovieImage || result.results[0]);
         setCurrentPage(result.page);
@@ -60,14 +62,16 @@ function LandingPage() {
   return (
     <div style={{ width: '100%', margin: '0' }}>
       {MainMovieImage
-      && (
-      <MainImage
-        image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}
-        title={MainMovieImage.original_title}
-        text={MainMovieImage.overview}
-      />
-      )}
+                && (
+                <MainImage
+                  image={`${IMAGE_BASE_URL}${IMAGE_SIZE}${MainMovieImage.backdrop_path}`}
+                  title={MainMovieImage.original_title}
+                  text={MainMovieImage.overview}
+                />
+                )}
+
       <div style={{ width: '85%', margin: '1rem auto' }}>
+
         <Title level={2}> Movies by latest </Title>
         <hr />
         <Row gutter={[16, 16]}>
@@ -83,13 +87,16 @@ function LandingPage() {
             </React.Fragment>
           ))}
         </Row>
+
         {Loading
-        && <div>Loading...</div>}
+          && <div>Loading...</div>}
+
         <br />
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <button ref={buttonRef} className="loadMore" onClick={loadMoreItems}>Load More</button>
         </div>
       </div>
+
     </div>
   );
 }
